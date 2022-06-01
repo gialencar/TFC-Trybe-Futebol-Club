@@ -1,10 +1,15 @@
 import { Router } from 'express';
 import loginController from '../users/useCases/Login';
+import validateController from '../users/useCases/Validate';
 
 const loginRouter = Router();
 
-loginRouter.post('/login', async (req, res) => {
-  loginController.handle(req, res);
-});
+loginRouter
+  .post('/login', (req, res) => {
+    loginController.handle(req, res);
+  })
+  .get('/login/validate', (req, res) => {
+    validateController.handle(req, res);
+  });
 
 export default loginRouter;
