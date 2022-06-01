@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import IController from './IController';
+import IController from '../../../common/interfaces/IController';
 import LoginUseCase from './LoginUseCase';
 
 export default class LoginController implements IController {
