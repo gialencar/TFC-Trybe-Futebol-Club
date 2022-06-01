@@ -3,6 +3,11 @@ import db from '.';
 
 class User extends Model {
   // public <campo>!: <tipo>;
+  declare id: number;
+  declare username: string;
+  declare role: string;
+  declare email: string;
+  declare password: string;
 }
 
 User.init(
