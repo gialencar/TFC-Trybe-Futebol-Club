@@ -10,7 +10,6 @@ export default class ValidateUseCase {
       { encoding: 'utf-8' },
     );
     const decoded = <JwtPayload>verify(token, jwtSecret);
-    console.log({ decoded });
 
     const userExists = await User.findOne({
       where: { email: decoded },

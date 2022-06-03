@@ -65,6 +65,10 @@ describe('Route POST:/login', () => {
       sinon.stub(User, 'findOne').resolves(undefined);
     });
 
+    after(() => {
+      (User.findOne as sinon.SinonStub).restore();
+    });
+
     beforeEach(async () => {
       chaiHttpResponse = await chai.request(app).post('/login').send({
         email: 'invalidEmail',

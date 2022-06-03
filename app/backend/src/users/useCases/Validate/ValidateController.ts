@@ -8,12 +8,10 @@ export default class ValidateController implements IController {
   handle = async (req: Request, res: Response): Promise<Response> => {
     const { authorization } = req.headers;
 
-    if (!authorization) return res.send();
+    if (!authorization) return res.status(401).send();
 
     const role = await this.validateUseCase.execute(authorization);
 
-    console.log({ role });
-
-    return res.status(200).send(role);
+    return res.status(200).json(role);
   };
 }
