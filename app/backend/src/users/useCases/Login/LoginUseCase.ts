@@ -23,7 +23,6 @@ export default class LoginUseCase {
       resolve(__dirname, '../../../../jwt.evaluation.key'),
       { encoding: 'utf-8' },
     );
-    console.log(jwtSecret);
 
     const token = sign(email, jwtSecret);
 
