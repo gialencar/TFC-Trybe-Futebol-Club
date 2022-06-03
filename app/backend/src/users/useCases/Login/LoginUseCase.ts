@@ -1,4 +1,4 @@
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { readFileSync } from 'fs';
 import { sign } from 'jsonwebtoken';
 import { resolve } from 'path';
