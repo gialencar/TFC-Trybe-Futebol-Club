@@ -10,7 +10,9 @@ export default class ValidateController implements IController {
 
     if (!authorization) return res.status(401).send();
 
-    const role = await this.validateUseCase.execute(authorization);
+    const token = authorization.split(' ')[1] || authorization;
+
+    const role = await this.validateUseCase.execute(token);
 
     return res.status(200).json(role);
   };
