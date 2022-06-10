@@ -1,15 +1,12 @@
 import * as express from 'express';
-import loginRouter from './routes/loginRouter';
-import teamsRouter from './routes/teamsRouter';
+import router from './routes';
 
 class App {
   public app: express.Express;
-  // ...
 
   constructor() {
     this.app = express();
     this.config();
-    // ...
   }
 
   private config(): void {
@@ -26,12 +23,9 @@ class App {
     this.app.use(express.json());
     this.app.use(accessControl);
     this.app.get('/', (_req, res) => res.send('ok'));
-    this.app.use(loginRouter);
-    this.app.use('/teams', teamsRouter);
-    // ...
+    this.app.use(router);
   }
 
-  // ...
   public start(PORT: string | number): void {
     this.app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
   }

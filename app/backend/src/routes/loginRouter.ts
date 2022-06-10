@@ -5,10 +5,10 @@ import validateController from '../users/useCases/Validate';
 const loginRouter = Router();
 
 loginRouter
-  .post('/login', (req, res) => {
+  .post('/', (req, res) => {
     loginController.handle(req, res);
   })
-  .get('/login/validate', (req, res) => {
+  .get('/validate', (req, res) => {
     validateController.handle(req, res);
   });
 
