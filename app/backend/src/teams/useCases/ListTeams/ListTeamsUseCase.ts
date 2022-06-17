@@ -1,5 +1,5 @@
 import Team from '../../../database/models/Team';
-import ITeamDTO from './TeamDTO';
+import ITeamDTO from '../../common/TeamDTO';
 
 export default class ListTeamsUseCase {
   constructor(private teamModel = Team) {}
