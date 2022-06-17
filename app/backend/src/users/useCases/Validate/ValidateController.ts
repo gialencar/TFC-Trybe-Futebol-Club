@@ -5,7 +5,7 @@ import ValidateUseCase from './ValidateUseCase';
 export default class ValidateController implements IController {
   constructor(private validateUseCase: ValidateUseCase) {}
 
-  handle = async (req: Request, res: Response): Promise<Response> => {
+  async handle(req: Request, res: Response): Promise<Response> {
     const { authorization } = req.headers;
 
     if (!authorization) return res.status(401).send();
@@ -15,5 +15,5 @@ export default class ValidateController implements IController {
     const role = await this.validateUseCase.execute(token);
 
     return res.status(200).json(role);
-  };
+  }
 }
