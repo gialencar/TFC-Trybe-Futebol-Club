@@ -18,7 +18,7 @@ Match.init(
       primaryKey: true,
     },
     homeTeam: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     homeTeamGoals: {
@@ -26,7 +26,7 @@ Match.init(
       allowNull: false,
     },
     awayTeam: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     awayTeamGoals: {
@@ -45,7 +45,7 @@ Match.init(
   },
 );
 
-Match.belongsTo(Team, { foreignKey: 'homeTeam', as: 'id' });
-Match.belongsTo(Team, { foreignKey: 'awayTeam', as: 'id' });
+Match.belongsTo(Team, { foreignKey: 'homeTeam', as: 'teamHome' });
+Match.belongsTo(Team, { foreignKey: 'awayTeam', as: 'teamAway' });
 
 export default Match;
