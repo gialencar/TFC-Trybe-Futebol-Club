@@ -3,7 +3,12 @@ import db from '.';
 import Team from './Team';
 
 class Match extends Model {
-  // public <campo>!: <tipo>;
+  declare id: number;
+  declare homeTeam: number;
+  declare homeTeamGoals: number;
+  declare awayTeam: number;
+  declare awayTeamGoals: number;
+  declare inProgress: number;
 }
 
 Match.init(
@@ -13,7 +18,7 @@ Match.init(
       primaryKey: true,
     },
     homeTeam: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     homeTeamGoals: {
@@ -21,7 +26,7 @@ Match.init(
       allowNull: false,
     },
     awayTeam: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     awayTeamGoals: {
