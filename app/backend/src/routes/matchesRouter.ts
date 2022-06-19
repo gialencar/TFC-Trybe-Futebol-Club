@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import createMatchCOntroller from '../matches/useCases/CreateMatch';
+import finishMatchController from '../matches/useCases/FinishMatch';
 import listMatchesController from '../matches/useCases/ListMatches';
 
 const matchesRouter = Router();
@@ -10,6 +11,9 @@ matchesRouter
   })
   .post('/', (req, res) => {
     createMatchCOntroller.handle(req, res);
+  })
+  .patch('/:id/finished', (req, res) => {
+    finishMatchController.handle(req, res);
   });
 
 export default matchesRouter;
