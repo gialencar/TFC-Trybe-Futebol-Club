@@ -72,4 +72,69 @@ describe('Matches', () => {
       });
     });
   });
+
+  describe('post matches route', () => {
+    afterEach(() => {
+      stub.restore();
+    });
+
+    describe('when creating an "in progress" match', () => {
+      const requestBody = {
+        homeTeam: 16,
+        awayTeam: 8,
+        homeTeamGoals: 2,
+        awayTeamGoals: 2,
+        inProgress: true,
+      };
+      const responseBody = {
+        id: 1,
+        homeTeam: 16,
+        awayTeam: 8,
+        homeTeamGoals: 2,
+        awayTeamGoals: 2,
+        inProgress: true,
+      };
+
+      before(async () => {
+        stub = sinon.stub(Match, 'create').resolves(responseBody as Match);
+
+        chaiHttpResponse = await chai
+          .request(app)
+          .post('/matches')
+          .send(requestBody);
+      });
+
+      it('should return a 201 status code and the created match', () => {
+        expect(chaiHttpResponse.status).to.eq(201);
+        expect(chaiHttpResponse.body).to.deep.eq(responseBody);
+      });
+    });
+
+    describe('when creating a "finished" match', () => {
+      const responseBody = { message: 'Finished' };
+
+      before(async () => {
+        stub = sinon.stub(Match, 'update').resolves([
+          1,
+          [
+            {
+              id: 1,
+              homeTeam: 16,
+              awayTeam: 8,
+              homeTeamGoals: 2,
+              awayTeamGoals: 2,
+              inProgress: true,
+            } as Match,
+          ],
+        ]);
+
+        chaiHttpResponse = await chai.request(app).patch('/matches/1/finished');
+      });
+
+      it('should return a 200 status code and message "Finished"', () => {
+        expect(chaiHttpResponse.status).to.eq(200);
+        expect(chaiHttpResponse.body).to.deep.eq(responseBody);
+      });
+    });
+  });
 });
