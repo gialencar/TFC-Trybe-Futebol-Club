@@ -128,7 +128,7 @@ describe('Matches', () => {
           ],
         ]);
 
-        chaiHttpResponse = await chai.request(app).patch('/matches/1/finished');
+        chaiHttpResponse = await chai.request(app).patch('/matches/1/finish');
       });
 
       it('should return a 200 status code and message "Finished"', () => {

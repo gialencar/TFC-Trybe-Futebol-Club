@@ -12,7 +12,7 @@ matchesRouter
   .post('/', (req, res) => {
     createMatchCOntroller.handle(req, res);
   })
-  .patch('/:id/finished', (req, res) => {
+  .patch('/:id/finish', (req, res) => {
     finishMatchController.handle(req, res);
   });
 
