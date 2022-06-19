@@ -20,6 +20,10 @@ describe('Matches', () => {
   let chaiHttpResponse: Response;
 
   describe('get matches route', () => {
+    afterEach(() => {
+      stub.restore();
+    });
+
     describe('when given no filter', () => {
       before(async () => {
         stub = sinon
@@ -27,10 +31,6 @@ describe('Matches', () => {
           .resolves(allMatches as unknown as Match[]);
 
         chaiHttpResponse = await chai.request(app).get('/matches');
-      });
-
-      after(() => {
-        stub.restore();
       });
 
       it('should return a 200 status and all matches', async () => {
@@ -49,10 +49,6 @@ describe('Matches', () => {
           .get('/matches?inProgress=false');
       });
 
-      after(() => {
-        stub.restore();
-      });
-
       it('should return a 200 status and the finished matches only', async () => {
         expect(chaiHttpResponse.status).to.equal(200);
         expect(chaiHttpResponse.body).to.deep.equal(finishedMatches);
@@ -68,10 +64,6 @@ describe('Matches', () => {
         chaiHttpResponse = await chai
           .request(app)
           .get('/matches?inProgress=true');
-      });
-
-      after(() => {
-        stub.restore();
       });
 
       it('should return a 200 status and the in progress matches only', async () => {
