@@ -1236,7 +1236,7 @@ export const finishedMatches = [
   },
 ];
 
-export const inProgress = [
+export const inProgressMatches = [
   {
     id: 41,
     homeTeam: 16,

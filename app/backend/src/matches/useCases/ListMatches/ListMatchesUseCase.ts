@@ -5,7 +5,7 @@ import Team from '../../../database/models/Team';
 export default class ListMatchesUseCase {
   constructor(private matchModel = Match) {}
 
-  execute(inProgress?: string) {
+  async execute(inProgress?: string) {
     let filter = {};
 
     if (inProgress != null) {
@@ -14,7 +14,7 @@ export default class ListMatchesUseCase {
       });
     }
 
-    const matches = this.matchModel.findAll({
+    const matches = await this.matchModel.findAll({
       where: filter, // empty object when func receives no param. effectively not filtering
       include: [
         { model: Team, as: 'teamHome', attributes: ['teamName'] },
