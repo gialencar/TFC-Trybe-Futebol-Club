@@ -190,4 +190,25 @@ describe('Matches', () => {
       });
     });
   });
+
+  describe('patch matches route', () => {
+    describe('when updating a match', () => {
+      const responseBody = { message: 'done' };
+      const requestBody = { homeTeamGoals: 3, awayTeamGoals: 1 };
+
+      before(async () => {
+        stub = sinon.stub(Match, 'update').resolves();
+
+        chaiHttpResponse = await chai
+          .request(app)
+          .patch('/matches/42')
+          .send(requestBody);
+      });
+
+      it('should return a 200 status code and "done" message', () => {
+        expect(chaiHttpResponse.status).to.eq(200);
+        expect(chaiHttpResponse.body).to.deep.eq(responseBody);
+      });
+    });
+  });
 });
