@@ -79,61 +79,114 @@ describe('Matches', () => {
     });
 
     describe('when creating an "in progress" match', () => {
-      const requestBody = {
-        homeTeam: 16,
-        awayTeam: 8,
-        homeTeamGoals: 2,
-        awayTeamGoals: 2,
-        inProgress: true,
-      };
-      const responseBody = {
-        id: 1,
-        homeTeam: 16,
-        awayTeam: 8,
-        homeTeamGoals: 2,
-        awayTeamGoals: 2,
-        inProgress: true,
-      };
+      describe('given a valid match', () => {
+        const requestBody = {
+          homeTeam: 16,
+          awayTeam: 8,
+          homeTeamGoals: 2,
+          awayTeamGoals: 2,
+          inProgress: true,
+        };
+        const responseBody = {
+          id: 1,
+          homeTeam: 16,
+          awayTeam: 8,
+          homeTeamGoals: 2,
+          awayTeamGoals: 2,
+          inProgress: true,
+        };
 
-      before(async () => {
-        stub = sinon.stub(Match, 'create').resolves(responseBody as Match);
+        before(async () => {
+          stub = sinon.stub(Match, 'create').resolves(responseBody as Match);
 
-        chaiHttpResponse = await chai
-          .request(app)
-          .post('/matches')
-          .send(requestBody);
+          chaiHttpResponse = await chai
+            .request(app)
+            .post('/matches')
+            .send(requestBody);
+        });
+
+        it('should return a 201 status code and the created match', () => {
+          expect(chaiHttpResponse.status).to.eq(201);
+          expect(chaiHttpResponse.body).to.deep.eq(responseBody);
+        });
       });
 
-      it('should return a 201 status code and the created match', () => {
-        expect(chaiHttpResponse.status).to.eq(201);
-        expect(chaiHttpResponse.body).to.deep.eq(responseBody);
+      describe('given a match in which the two teams are the same', () => {
+        const requestBody = {
+          homeTeam: 16,
+          awayTeam: 16,
+          homeTeamGoals: 2,
+          awayTeamGoals: 2,
+          inProgress: true,
+        };
+
+        before(async () => {
+          chaiHttpResponse = await chai
+            .request(app)
+            .post('/matches')
+            .send(requestBody);
+        });
+
+        it('should return a 401 status code and the message: "It is not possible to create a match with two equal teams"', () => {
+          expect(chaiHttpResponse.status).to.eq(401);
+          expect(chaiHttpResponse.body).to.deep.eq({
+            message:
+              'It is not possible to create a match with two equal teams',
+          });
+        });
+      });
+
+      describe('given a match in which a team does not exist in the Teams table', () => {
+        const requestBody = {
+          homeTeam: 99,
+          awayTeam: 16,
+          homeTeamGoals: 2,
+          awayTeamGoals: 2,
+          inProgress: true,
+        };
+
+        before(async () => {
+          chaiHttpResponse = await chai
+            .request(app)
+            .post('/matches')
+            .send(requestBody);
+        });
+
+        it('should return a 404 status code and the message: "There is no team with such id!"', () => {
+          expect(chaiHttpResponse.status).to.eq(404);
+          expect(chaiHttpResponse.body).to.deep.eq({
+            message: 'There is no team with such id!',
+          });
+        });
       });
     });
 
-    describe('when creating a "finished" match', () => {
-      const responseBody = { message: 'Finished' };
+    describe('when "finishing" a match', () => {
+      describe('given a match which IS in progress', () => {
+        const responseBody = { message: 'Finished' };
 
-      before(async () => {
-        stub = sinon.stub(Match, 'update').resolves([
-          1,
-          [
-            {
-              id: 1,
-              homeTeam: 16,
-              awayTeam: 8,
-              homeTeamGoals: 2,
-              awayTeamGoals: 2,
-              inProgress: true,
-            } as Match,
-          ],
-        ]);
+        before(async () => {
+          stub = sinon.stub(Match, 'update').resolves([
+            1,
+            [
+              {
+                id: 1,
+                homeTeam: 16,
+                awayTeam: 8,
+                homeTeamGoals: 2,
+                awayTeamGoals: 2,
+                inProgress: true,
+              } as Match,
+            ],
+          ]);
 
-        chaiHttpResponse = await chai.request(app).patch('/matches/1/finish');
-      });
+          chaiHttpResponse = await chai.request(app).patch('/matches/1/finish');
+        });
 
-      it('should return a 200 status code and message "Finished"', () => {
-        expect(chaiHttpResponse.status).to.eq(200);
-        expect(chaiHttpResponse.body).to.deep.eq(responseBody);
+        it('should return a 200 status code and message "Finished"', () => {
+          expect(chaiHttpResponse.status).to.eq(200);
+          expect(chaiHttpResponse.body).to.deep.eq(responseBody);
+        });
       });
     });
   });
