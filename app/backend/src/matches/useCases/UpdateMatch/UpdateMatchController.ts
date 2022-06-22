@@ -15,6 +15,6 @@ export default class UpdateMatchController implements IController {
       finished,
     );
 
-    return res.status(200).send();
+    return res.status(200).json({ message: 'done' });
   }
 }

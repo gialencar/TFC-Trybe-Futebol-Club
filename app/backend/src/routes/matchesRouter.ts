@@ -4,6 +4,7 @@ import createMatchCOntroller, {
 } from '../matches/useCases/CreateMatch';
 import finishMatchController from '../matches/useCases/FinishMatch';
 import listMatchesController from '../matches/useCases/ListMatches';
+import updateMatchController from '../matches/useCases/UpdateMatch';
 
 const matchesRouter = Router();
 
@@ -22,6 +23,9 @@ matchesRouter
   )
   .patch('/:id/finish', (req, res) => {
     finishMatchController.handle(req, res);
+  })
+  .patch('/:id', (req, res) => {
+    updateMatchController.handle(req, res);
   });
 
 export default matchesRouter;

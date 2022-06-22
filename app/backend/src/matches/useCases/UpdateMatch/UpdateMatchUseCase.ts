@@ -16,6 +16,6 @@ export default class UpdateMatchUseCase {
       updateValues = { ...updateValues, inProgress: finished };
     }
 
-    this.matchModel.update(updateValues, { where: { id } });
+    await this.matchModel.update(updateValues, { where: { id } });
   }
 }
