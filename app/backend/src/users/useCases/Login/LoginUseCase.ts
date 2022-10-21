@@ -24,7 +24,7 @@ export default class LoginUseCase {
       { encoding: 'utf-8' },
     );
 
-    const token = sign(email, jwtSecret);
+    const token = sign(email, jwtSecret, {expiresIn: '10m'});
 
     return { user: { id, username, role, email }, token };
   };
