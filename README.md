@@ -3,23 +3,19 @@
 <p align="center">Um site informativo sobre partidas e classificações de futebol</p>
 
 <ul align="center">
-<a href="https://tfc.gilsonalencar.me">:link: Live Site</a> • 
-<a href="https://api.tfc.gilsonalencar.me">:link: API</a> • 
+<a href="https://gialencar-tfc-client-c474c268f911.herokuapp.com/">:link: Live Site</a> • 
+<a href="https://gialencar-tfc-api-6faa779c10ac.herokuapp.com/">:link: API</a> • 
 <a href="https://documenter.getpostman.com/view/20130984/2s84Dmyk4z">:link: API Docs</a>
 </ul>
 
-<h2 align="center">  <img
-    alt="Website"
-    src="https://img.shields.io/website?down_message=offline&style=for-the-badge&up_message=up&url=https%3A%2F%2Ftfc.gilsonalencar.me"
-  />
-  <img
-    alt="Website"
-    src="https://img.shields.io/website?down_message=offline&label=API&style=for-the-badge&up_message=up&url=https%3A%2F%2Fapi.tfc.gilsonalencar.me"
-  />
-  <p>
-    <img src="https://img.shields.io/badge/node-%5E16.15.0-brightgreen" />
-    <img src="https://img.shields.io/badge/react-17.0.2-blue" />
-  </p>
+
+<h2 align="center">
+    <img alt="Website up badge" src="https://img.shields.io/website?url=https%3A%2F%2Fgialencar-tfc-client-c474c268f911.herokuapp.com%2F&style=for-the-badge&logo=heroku">
+    <img alt="API up badge" src="https://img.shields.io/website?url=https%3A%2F%2Fgialencar-tfc-api-6faa779c10ac.herokuapp.com%2F&style=for-the-badge&logo=heroku&label=API">
+    <p>
+        <img src="https://img.shields.io/badge/node-%5E16.15.0-brightgreen" />
+        <img src="https://img.shields.io/badge/react-17.0.2-blue" />
+    </p>
 </h2>
 
 
