@@ -10,8 +10,10 @@
 
 
 <h2 align="center">
-    <img alt="Website up badge" src="https://img.shields.io/website?url=https%3A%2F%2Fgialencar-tfc-client-c474c268f911.herokuapp.com%2F&style=for-the-badge&logo=heroku">
-    <img alt="API up badge" src="https://img.shields.io/website?url=https%3A%2F%2Fgialencar-tfc-api-6faa779c10ac.herokuapp.com%2F&style=for-the-badge&logo=heroku&label=API">
+<!--     <img alt="Website up badge" src="https://img.shields.io/website?url=https%3A%2F%2Fgialencar-tfc-client-c474c268f911.herokuapp.com%2F&style=for-the-badge&logo=heroku"> -->
+<!--     <img alt="API up badge" src="https://img.shields.io/website?url=https%3A%2F%2Fgialencar-tfc-api-6faa779c10ac.herokuapp.com%2F&style=for-the-badge&logo=heroku&label=API"> -->
+    <img alt="Static Badge" src="https://img.shields.io/badge/Website-UP-green?style=flat-square&link=https%3A%2F%2Fgialencar-tfc-client-c474c268f911.herokuapp.com%2F">
+    <img alt="Static Badge" src="https://img.shields.io/badge/API-UP-green?style=flat-square">
     <p>
         <img src="https://img.shields.io/badge/node-%5E16.15.0-brightgreen" />
         <img src="https://img.shields.io/badge/react-17.0.2-blue" />
